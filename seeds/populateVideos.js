@@ -9,7 +9,7 @@ exports.seed = function (knex, Promise) {
         {id: 5, vid_url: '1YGfrGKK9Mo', quote: 'I\'m flying Jack', startTime: 24, quoteStart: 39, quoteEnd: 43, pauseTime: 10, title: 'Titanic'},
         {id: 6, vid_url: 'TU7CDejp6Lw', quote: 'Get to the chopper', startTime: 103, quoteStart: 129, quoteEnd: 132, pauseTime: 10, title: 'Predator'},
         {id: 7, vid_url: 'pxPGzj2L3n0', quote: 'And my axe', startTime: 0, quoteStart: 8, quoteEnd: 12, pauseTime: 10, title: 'The Lord of The Rings'},
-        {id: 8, vid_url: 'h6sj89xgnl4', quote: 'No I am your father', startTime: 92, quoteStart: 102, quoteEnd: 106, pauseTime: 10, title: 'Starwars: the Empire Strikes Back'},
+        {id: 8, vid_url: 'h6sj89xgnl4', quote: 'No I am your father', startTime: 92, quoteStart: 101, quoteEnd: 106, pauseTime: 10, title: 'Starwars: the Empire Strikes Back'},
         {id: 9, vid_url: 'vUN7yu7zvz8', quote: 'you\'re a wizard harry', startTime: 16, quoteStart: 21, quoteEnd: 24, pauseTime: 10, title: 'Harry Potter and the Scorcerer\'s Stone'},
         {id: 10, vid_url: 'EemLsTG5fX8', quote: 'I wrote to you everyday for a year', startTime: 81, quoteStart: 102, quoteEnd: 104, pauseTime: 10, title: 'The Notebook'},
         {id: 11, vid_url: 'NVPLqbWXdDA', quote: 'leeloo dallas multipass', startTime: 50, quoteStart: 59, quoteEnd: 62, pauseTime: 10, title: 'The 5th Element'},
