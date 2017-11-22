@@ -55,7 +55,7 @@ class Video extends React.Component {
     const {video, quoteStart, startTime} = this.state
     video.seekTo(startTime)
     video.playVideo()
-    setTimeout(() => this.muteClip(), ((quoteStart - startTime)+2) * 1000)
+    setTimeout(() => this.muteClip(), ((quoteStart - startTime) + 2) * 1000)
   }
   hideStart () {
     this.setState({startVisible: false})
@@ -69,7 +69,7 @@ class Video extends React.Component {
   }
   muteClip () {
     this.state.video.mute()
-    setTimeout(() => this.pauseClip(), ((this.state.quoteEnd - this.state.quoteStart)+1) * 1000)
+    setTimeout(() => this.pauseClip(), ((this.state.quoteEnd - this.state.quoteStart) + 1) * 1000)
     this.setState({ countdownIsVisible: true })
   }
   pauseClip () {
@@ -90,8 +90,8 @@ class Video extends React.Component {
 
   render () {
     const opts = {
-      height: '720',
-      width: '1280',
+      width: '1024',
+      height: '576',
       playerVars: {
         rel: 0,
         controls: 0,
