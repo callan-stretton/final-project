@@ -104,8 +104,10 @@ class Video extends React.Component {
         <div className="countdown title has-text-centered">
           {this.state.countdownIsVisible && <ReactCountdownClock className="countdown-clock-comp"
             seconds={5}
-            color="#DC143C"
-            size={576} />}
+            showMilliseconds={false}
+            color="#631cf2"
+            size={576}
+            weight={100} />}
         </div>
         <div className="disableClick">
           <YouTube videoId={this.state.vidurl} opts={opts} onReady={this.saveVideo} />
