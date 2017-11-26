@@ -81,8 +81,6 @@ class Dictaphone extends Component {
   }
   componentWillReceiveProps ({ finalTranscript, randomVid, dispatch, round }) {
     if (finalTranscript.length && !this.state.finished) {
-      console.log('Well: finalTranscript.length > 0')
-      console.log('This is that finalTranscript: ', finalTranscript)
       this.setState({ finished: true })
       this.compareFinalTranscript(finalTranscript)
     }
