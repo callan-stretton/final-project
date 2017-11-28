@@ -10,6 +10,8 @@ See live page for the meantime https://miromiro-grad-project.herokuapp.com
 
 - Clone this repository ```git clone https://github.com/callan-stretton/final-project```
 - Run ```npm i```
+- Run ```npm run knex migrate:latest```
+- Run ```npm run knex seed:run```
 - Run ```npm start```
 - Visit [http://localhost:3000](http://localhost:3000)
 
