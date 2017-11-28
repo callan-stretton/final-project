@@ -70,12 +70,15 @@ class Video extends React.Component {
   muteClip () {
     this.state.video.mute()
     setTimeout(() => this.pauseClip(), ((this.state.quoteEnd - this.state.quoteStart) + 1) * 1000)
-    this.setState({ countdownIsVisible: true })
   }
   pauseClip () {
-    this.hideCountdown()
-    this.setState({ speakPromptIsVisible: true })
     this.state.video.pauseVideo()
+    this.setState({ countdownIsVisible: true })
+    setTimeout(() => this.setState({ speakPromptIsVisible: true }), 5000)
+    setTimeout(() => this.hideCountdown(), 5000)
+    // this.setState({ speakPromptIsVisible: true })
+    // this.hideCountdown()
+
   }
   restartClip () {
     this.state.video.seekTo(this.state.quoteStart)
@@ -103,9 +106,12 @@ class Video extends React.Component {
     return (
       <div>
         <div className="countdown title has-text-centered">
-          {this.state.countdownIsVisible && <ReactCountdownClock seconds={this.state.quoteEnd - this.state.quoteStart}
-            color="#DC143C"
-            size={100} />}
+          {this.state.countdownIsVisible && <ReactCountdownClock className="countdown-clock-comp"
+            seconds={5}
+            showMilliseconds={false}
+            color="#631cf2"
+            size={576}
+            weight={100} />}
         </div>
         <div className="disableClick">
           <YouTube videoId={this.state.vidurl} opts={opts} onReady={this.saveVideo} />
