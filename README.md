@@ -15,5 +15,7 @@ See live page for the meantime https://miromiro-grad-project.herokuapp.com
 
 ## In development 
 
-- Record automatically after playing clip with a 5 second delay
+- Mute at the correct time
+- Pause clip after muted dialogue then start coundown timer for 5 seconds
+- Record automatically after countdown ends
 - Styling
