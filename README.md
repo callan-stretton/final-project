@@ -3,9 +3,6 @@
 A continuation from the final EDA group project. 
 A movie quote quiz game where players take it in turns to guess the next famous line from a movie by speaking out loud into the device’s microphone using speech-to-text technology, and getting a score as to how accurate they were. 
 
-## Currently in development
-See live page for the meantime https://miromiro-grad-project.herokuapp.com
-
 ## Instructions: 
 
 - Clone this repository ```git clone https://github.com/callan-stretton/final-project```
@@ -17,7 +14,6 @@ See live page for the meantime https://miromiro-grad-project.herokuapp.com
 
 ## In development 
 
-- Mute at the correct time
-- Pause clip after muted dialogue then start coundown timer for 5 seconds
-- Record automatically after countdown ends
+- Fine tune the quote starting points
+- Have ability to add scenes to database
 - Styling
