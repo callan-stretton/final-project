@@ -80,7 +80,7 @@ class Dictaphone extends Component {
     }
   }
   componentWillReceiveProps ({ finalTranscript, randomVid, dispatch, round }) {
-    if (finalTranscript.length && !this.state.finished) {
+    if (finalTranscript.length && !this.state.finished) { // if finalTranscript.length is truthy ie 1 or more
       this.setState({ finished: true })
       this.compareFinalTranscript(finalTranscript)
     }
@@ -93,7 +93,7 @@ class Dictaphone extends Component {
   }
 
   checkScore (points) {
-    if (points === 20) {
+    if (points === 10) {
       this.setState({ response: perfectScore })
     } else if (points === 0) {
       this.setState({ response: flunked })
@@ -118,8 +118,8 @@ class Dictaphone extends Component {
       if (actualArr.find(actualChar => actualChar === char)) points++
     })
     if (finalTranscript.toLowerCase() === actual.toLowerCase()) {
-      console.log('Correct, double points!')
-      points = 20 
+      console.log('Correct, full points!')
+      points = 10
       console.log('points: ' + points)
       dispatch(setPlayerScores(points, round.currentPlayer))
       this.checkScore(points)
@@ -156,7 +156,7 @@ class Dictaphone extends Component {
           Stop/Submit
       </button>}
       <br />
-      <input type="text" value={transcript} id="speech-field" className="speech-box"/>
+      <input type="text" value={transcript} id="speech-field" className="speech-box" disabled/>
       {this.state.continueVisible && playerScores.length > 0 && <p>
             Score: {playerScores[playerScores.length - 1].score}
       </p>}
