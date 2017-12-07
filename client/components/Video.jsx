@@ -10,6 +10,7 @@ class Video extends React.Component {
     this.state = {
       playerCanSpeak: false,
       countdownIsVisible: false,
+      muteIsVisible: false,
       video: null,
       vidurl: '',
       startTime: 0,
@@ -36,6 +37,7 @@ class Video extends React.Component {
       startVisible: true,
       speakPromptIsVisible: false,
       countdownIsVisible: false,
+      muteIsVisible: false,
       vidurl: randomVid.vid_url,
       startTime: randomVid.startTime,
       quoteStart: randomVid.quoteStart,
@@ -69,10 +71,12 @@ class Video extends React.Component {
   }
   muteClip () {
     this.state.video.mute()
+    this.setState({ muteIsVisible: true})
     setTimeout(() => this.pauseClip(), ((this.state.quoteEnd - this.state.quoteStart) + 1) * 1000)
   }
   pauseClip () {
     this.state.video.pauseVideo()
+    this.setState({ muteIsVisible: false })
     this.setState({ countdownIsVisible: true })
     setTimeout(() => this.setState({ speakPromptIsVisible: true }), 5000)
     setTimeout(() => this.hideCountdown(), 5000)
@@ -110,6 +114,9 @@ class Video extends React.Component {
             color="#631cf2"
             size={576}
             weight={100} />}
+        </div>
+        <div className="mute-icon">
+          {this.state.muteIsVisible && <img src="images/mute.png" alt="Mute" height="42" width="42"/>}
         </div>
         <div className="disableClick">
           <YouTube videoId={this.state.vidurl} opts={opts} onReady={this.saveVideo} />
