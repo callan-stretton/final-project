@@ -76,8 +76,6 @@ class Video extends React.Component {
     this.setState({ countdownIsVisible: true })
     setTimeout(() => this.setState({ speakPromptIsVisible: true }), 5000)
     setTimeout(() => this.hideCountdown(), 5000)
-    // this.setState({ speakPromptIsVisible: true })
-    // this.hideCountdown()
 
   }
   restartClip () {
@@ -126,5 +124,3 @@ class Video extends React.Component {
 }
 
 export default Video
-
-// < CountdownTimer endDate= { moment().startOf('second').fromNow() } />
