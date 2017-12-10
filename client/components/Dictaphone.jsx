@@ -26,6 +26,7 @@ class Dictaphone extends Component {
       points: null,
       finalTranscript: '',
       finished: false,
+      transcriptStarted: false,
       speakVisible: true,
       submitVisible: false,
       continueVisible: false,
@@ -79,14 +80,15 @@ class Dictaphone extends Component {
       return reworkedPoints
     }
   }
-  componentWillReceiveProps ({ finalTranscript, randomVid, dispatch, round }) {
-    if (finalTranscript.length && !this.state.finished) { // IF STATETMENT: if finalTranscript.length is truthy ie 1 or more
-      this.setState({ finished: true })
+  componentWillReceiveProps ({ finalTranscript, transcript, randomVid, dispatch, round }) {
+    if (finalTranscript.length && !this.state.finished) { // IF STATETMENT: if finalTranscript.length is truthy and the state of finished is false
+      this.setState({ finished: true }) // set the state of finished to true (to not exceed call stack)
       this.compareFinalTranscript(finalTranscript)
     }
   }
 
   stopListeningClick () {
+    console.log('this.state.finished = ', this.state.finished)
     this.stopSubmit()
     this.props.stopListening()
     this.props.restartClip()
@@ -152,7 +154,7 @@ class Dictaphone extends Component {
     return <div>
       {!this.props.startVisible && this.state.speakVisible && !this.props.playerCanSpeak && <button className="button is-large" disabled>Cameras are rolling ! Get ready !</button>}
       {this.props.playerCanSpeak && this.state.speakVisible && this.startSpeak()}
-      {this.state.submitVisible && <button className="button is-large is-danger" onClick={this.stopListeningClick}>
+      {this.state.finished && this.state.submitVisible && <button className="button is-large is-danger" onClick={this.stopListeningClick}>
           Stop/Submit
       </button>}
       <br />
