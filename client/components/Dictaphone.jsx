@@ -26,6 +26,7 @@ class Dictaphone extends Component {
       points: null,
       finalTranscript: '',
       finished: false,
+      transcriptStarted: false,
       speakVisible: true,
       submitVisible: false,
       continueVisible: false,
@@ -79,10 +80,12 @@ class Dictaphone extends Component {
       return reworkedPoints
     }
   }
-  componentWillReceiveProps ({ finalTranscript, randomVid, dispatch, round }) {
-    if (finalTranscript.length && !this.state.finished) {
-      this.setState({ finished: true })
+  componentWillReceiveProps ({ finalTranscript, transcript, randomVid, dispatch, round }) {
+    if (finalTranscript.length && !this.state.finished) { // IF STATETMENT: if finalTranscript.length is truthy and the state of finished is false
+      this.setState({ finished: true }) // set the state of finished to true (to not exceed call stack)
       this.compareFinalTranscript(finalTranscript)
+    } else if (transcript.length && !this.state.transcriptStarted) {
+      this.setState({ transcriptStarted: true })
     }
   }
 
@@ -93,7 +96,7 @@ class Dictaphone extends Component {
   }
 
   checkScore (points) {
-    if (points === 20) {
+    if (points === 10) {
       this.setState({ response: perfectScore })
     } else if (points === 0) {
       this.setState({ response: flunked })
@@ -113,13 +116,13 @@ class Dictaphone extends Component {
     const actualArr = actual.toLowerCase().split(' ')
     let transArr = finalTranscript.toLowerCase().split(' ')
     console.log('quote from database = ', actual)
-    console.log('finalTranscript = ' + finalTranscript) // look at final transcript
+    console.log('finalTranscript = ', finalTranscript)
     transArr.forEach((char, idx, transcriptArr) => {
       if (actualArr.find(actualChar => actualChar === char)) points++
     })
     if (finalTranscript.toLowerCase() === actual.toLowerCase()) {
-      console.log('Correct, double points!')
-      points = 20 
+      console.log('Correct, full points!')
+      points = 10
       console.log('points: ' + points)
       dispatch(setPlayerScores(points, round.currentPlayer))
       this.checkScore(points)
@@ -129,14 +132,14 @@ class Dictaphone extends Component {
       let percentagePoints = Math.round((adjustedPoints / actualArr.length) * 10)
       points = this.reworking(percentagePoints)
       console.log('Ooh, additional words will lose you points')
-      console.log('points: ' + points)
+      console.log('points: ', points)
       dispatch(setPlayerScores(points, round.currentPlayer))
       this.checkScore(points)
       return points
     } else {
       console.log('Not quite...')
       points = Math.round((points / actualArr.length) * 10)
-      console.log('points: ' + points)
+      console.log('points: ', points)
       dispatch(setPlayerScores(points, round.currentPlayer))
       this.checkScore(points)
       return points
@@ -151,12 +154,12 @@ class Dictaphone extends Component {
 
     return <div>
       {!this.props.startVisible && this.state.speakVisible && !this.props.playerCanSpeak && <button className="button is-large" disabled>Cameras are rolling ! Get ready !</button>}
-      {this.props.playerCanSpeak && this.state.speakVisible && this.startSpeak() && <button className="button is-large" disabled>Speak now!</button>}
-      {this.state.submitVisible && <button className="button is-large is-danger" onClick={this.stopListeningClick}>
+      {this.props.playerCanSpeak && this.state.speakVisible && this.startSpeak()}
+      {this.state.transcriptStarted && this.state.submitVisible && <button className="button is-large is-danger" onClick={this.stopListeningClick}>
           Stop/Submit
       </button>}
       <br />
-      <input type="text" value={transcript} id="speech-field" className="speech-box"/>
+      <input type="text" value={transcript} id="speech-field" className="speech-box" disabled/>
       {this.state.continueVisible && playerScores.length > 0 && <p>
             Score: {playerScores[playerScores.length - 1].score}
       </p>}

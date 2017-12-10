@@ -159,7 +159,7 @@ class Leaderboard extends React.Component {
 
             <hr />
             <button className="button is-centered is-danger is-large" onClick={this.handleModalButton}>
-              Play it again Sam...
+              Play Again!
             </button>
           </div>
         </Podium>
