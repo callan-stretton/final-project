@@ -114,9 +114,7 @@ class Video extends React.Component {
             color="#631cf2"
             size={576}
             weight={100} />}
-        </div>
-        <div className="mute-icon">
-          {this.state.muteIsVisible && <img src="images/mute.png" alt="Mute" height="42" width="42"/>}
+          {this.state.muteIsVisible && <img src="images/mute.png" alt="Mute" height="42" width="42" />}
         </div>
         <div className="disableClick">
           <YouTube videoId={this.state.vidurl} opts={opts} onReady={this.saveVideo} />

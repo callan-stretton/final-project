@@ -80,7 +80,7 @@ class Dictaphone extends Component {
     }
   }
   componentWillReceiveProps ({ finalTranscript, randomVid, dispatch, round }) {
-    if (finalTranscript.length && !this.state.finished) { // if finalTranscript.length is truthy ie 1 or more
+    if (finalTranscript.length && !this.state.finished) { // IF STATETMENT: if finalTranscript.length is truthy ie 1 or more
       this.setState({ finished: true })
       this.compareFinalTranscript(finalTranscript)
     }
@@ -151,7 +151,7 @@ class Dictaphone extends Component {
 
     return <div>
       {!this.props.startVisible && this.state.speakVisible && !this.props.playerCanSpeak && <button className="button is-large" disabled>Cameras are rolling ! Get ready !</button>}
-      {this.props.playerCanSpeak && this.state.speakVisible && this.startSpeak() && <button className="button is-large" disabled>Speak now!</button>}
+      {this.props.playerCanSpeak && this.state.speakVisible && this.startSpeak()}
       {this.state.submitVisible && <button className="button is-large is-danger" onClick={this.stopListeningClick}>
           Stop/Submit
       </button>}
