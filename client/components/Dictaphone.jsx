@@ -57,9 +57,6 @@ class Dictaphone extends Component {
 
   stopSubmit () {
     this.setState({submitVisible: false, continueVisible: true})
-    console.log('this.state.transcriptStarted = ', this.state.transcriptStarted)
-    console.log('this.state.finished = ', this.state.finished)
-    console.log('this.state.submitVisible = ', this.state.submitVisible)
     setTimeout(this.playSound, 3000)
   }
 
