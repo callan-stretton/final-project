@@ -100,6 +100,10 @@ line-height: 1;
  text-align: center;
  margin-right: 576px;
 }
+.mute {
+  position: absolute;
+  margin-top: 288px;
+}
 .strong {
   font-weight: bold;
 }
