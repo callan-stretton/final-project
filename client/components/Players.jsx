@@ -49,9 +49,13 @@ class Players extends React.Component {
   }
   addPlayer (evt) {
     let {players, pendingPlayer} = this.state
-    players.push(pendingPlayer)
-    pendingPlayer = {id: null, icon: null, name: ''}
-    this.setState({players, pendingPlayer})
+    if (pendingPlayer.icon && pendingPlayer.name) {
+      players.push(pendingPlayer)
+      pendingPlayer = { id: null, icon: null, name: '' }
+      this.setState({ players, pendingPlayer })
+    } else {
+      console.log('needs icon and name')
+    }
   }
   toggleDropDown (dropdownActive) {
     this.setState({dropdownActive})
@@ -120,9 +124,10 @@ class Players extends React.Component {
                 </div>
               </div>
             </div>
-            <button className="button" onClick={this.addPlayer}>
-                Add Player
-            </button>
+            {!pendingPlayer.icon && !pendingPlayer.name && <button className="button" disabled>Add Player</button>}
+            {!pendingPlayer.icon && pendingPlayer.name && <button className="button" disabled>Add Player</button>}
+            {pendingPlayer.icon && !pendingPlayer.name && <button className="button" disabled>Add Player</button>}
+            {pendingPlayer.icon && pendingPlayer.name && <button className="button" onClick={this.addPlayer}>Add Player</button>}
           </div>
         </div>
       </div>
