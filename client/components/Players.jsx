@@ -124,9 +124,10 @@ class Players extends React.Component {
                 </div>
               </div>
             </div>
-            <button className="button" onClick={this.addPlayer}>
-                Add Player
-            </button>
+            {!pendingPlayer.icon && !pendingPlayer.name && <button className="button" disabled>Add Player</button>}
+            {!pendingPlayer.icon && pendingPlayer.name && <button className="button" disabled>Add Player</button>}
+            {pendingPlayer.icon && !pendingPlayer.name && <button className="button" disabled>Add Player</button>}
+            {pendingPlayer.icon && pendingPlayer.name && <button className="button" onClick={this.addPlayer}>Add Player</button>}
           </div>
         </div>
       </div>
