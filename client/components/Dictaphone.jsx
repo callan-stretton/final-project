@@ -13,11 +13,11 @@ const propTypes = {
   browserSupportsSpeechRecognition: PropTypes.bool
 }
 
-const perfectScore = {url: '/sounds/applausesound.mp3', start: 1}
-const seven9 = {url: '/sounds/cheer.mp3', start: 0}
-const four6 = { url: '/sounds/applus.mp3', start: 4 }
-const one3 = {url: '/sounds/WrongBuzzer.mp3', start: 0}
-const flunked = {url: '/sounds/FailHorn.mp3', start: 0}
+const perfectScore = {url: '/sounds/applausesound.mp3', start: 0}
+const six9 = {url: '/sounds/applus.mp3', start: 0}
+const three5 = { url: '/sounds/crowd-disappointed.mp3', start: 4 }
+const one2 = {url: '/sounds/trumpet-drown.mp3', start: 0}
+const noPoints = {url: '/sounds/WrongBuzzer.mp3', start: 0}
 
 class Dictaphone extends Component {
   constructor (props) {
@@ -99,13 +99,13 @@ class Dictaphone extends Component {
     if (points === 10) {
       this.setState({ response: perfectScore })
     } else if (points === 0) {
-      this.setState({ response: flunked })
-    } else if (points > 6) {
-      this.setState({ response: seven9 })
-    } else if (points > 3) {
-      this.setState({ response: four6 })
+      this.setState({ response: noPoints })
+    } else if (points > 5) {
+      this.setState({ response: six9 })
+    } else if (points > 2) {
+      this.setState({ response: three5 })
     } else {
-      this.setState({ response: one3 })
+      this.setState({ response: one2 })
     }
   }
 
