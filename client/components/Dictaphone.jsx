@@ -1,4 +1,4 @@
-import { PropTypes, Component } from 'react'
+import React, { PropTypes, Component } from 'react'
 import SpeechRecognition from 'react-speech-recognition'
 import {setPlayerScores} from '../actions/playerScores'
 import Sound from 'react-sound'
