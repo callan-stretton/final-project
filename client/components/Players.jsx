@@ -131,7 +131,8 @@ class Players extends React.Component {
           </div>
         </div>}
       </div>
-      <input className="button strong is-large is-danger" type="button" onClick={this.submitAllPlayers} value="Ready... action!" />
+      {this.state.players.length === 0 && <input className="button strong is-large is-danger" type="button" onClick={this.submitAllPlayers} value="Ready... action!" disabled />}
+      {this.state.players.length > 0 && <input className="button strong is-large is-danger" type="button" onClick={this.submitAllPlayers} value="Ready... action!" />}
     </div>
   }
 }
