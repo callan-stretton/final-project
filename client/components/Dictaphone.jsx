@@ -155,9 +155,7 @@ class Dictaphone extends Component {
     return <div>
       {!this.props.startVisible && this.state.speakVisible && !this.props.playerCanSpeak && <button className="button is-large" disabled>Cameras are rolling ! Get ready !</button>}
       {this.props.playerCanSpeak && this.state.speakVisible && this.startSpeak()}
-      {this.state.transcriptStarted && this.state.submitVisible && <button className="button is-large is-danger" onClick={this.stopListeningClick}>
-          Stop/Submit
-      </button>}
+      {this.state.transcriptStarted && this.state.submitVisible && <button className="button is-large is-danger" onClick={this.stopListeningClick}>Stop/Submit</button>}
       <br />
       <input type="text" value={transcript} id="speech-field" className="speech-box" disabled/>
       {this.state.continueVisible && playerScores.length > 0 && <p>
