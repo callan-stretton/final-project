@@ -200,3 +200,15 @@ line-height: 1;
   margin-top: 0;
   /* position: absolute; */
 }
+.current-player-div {
+  text-align: center;
+}
+
+.current-player-div .title {
+  display: inline-block;
+}
+
+.current-player-icon {
+  display: inline-block;
+  margin-bottom: -20px;
+}
