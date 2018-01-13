@@ -2,8 +2,6 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 
-
-
 class Homepage extends React.Component {
   constructor (props) {
     super(props)
@@ -22,23 +20,25 @@ class Homepage extends React.Component {
             <button className="button is-large is-danger"><strong>Let's play!</strong></button>
           </Link>
         </div>
-          <div className="sub-buttons">
-              <Link to="/aboutus" className="aboutus">
-                <button className="button is-large"><strong>About Us</strong></button>
-              </Link>
-              <Link to="/instructions" className="instructions">
-                <button className="button is-large"><strong>Instructions</strong></button>
-             </Link>
-             <Link to="/winners">
-              <button className="button is-large"><strong>Hall of Fame</strong></button>
-            </Link>
+        <div className="sub-buttons">
+          <Link to="/aboutus" className="aboutus">
+            <button className="button is-large"><strong>About Us</strong></button>
+          </Link>
+          <Link to="/instructions" className="instructions">
+            <button className="button is-large"><strong>Instructions</strong></button>
+          </Link>
+          <Link to="/winners">
+            <button className="button is-large"><strong>Hall of Fame</strong></button>
+          </Link>
+          <Link to="/addvideo">
+            <button className="button is-large"><strong>Add Video</strong></button>
+          </Link>
         </div>
       </div>
     </div>
   }
 }
 
-
 export default Homepage
 
-  // < img src= "/images/homepageimage.jpg" className= "homepageimage column is-half" />
+// < img src= "/images/homepageimage.jpg" className= "homepageimage column is-half" />

@@ -17,7 +17,7 @@ class Video extends React.Component {
       quoteStart: 0,
       quoteEnd: 0,
       pauseTime: 0,
-      timeLeft: 3
+      timeLeft: 3 // instead 0?
     }
     this.saveVideo = this.saveVideo.bind(this)
     this.startClip = this.startClip.bind(this)
