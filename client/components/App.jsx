@@ -7,6 +7,7 @@ import Homepage from './Homepage'
 import Round from './Round'
 import Leaderboard from './Leaderboard'
 import HallOfFame from './HallOfFame'
+import AddVideo from './AddVideo'
 
 const App = () => (
   <Router>
@@ -18,6 +19,7 @@ const App = () => (
       <Route path="/players" component={Players} />
       <Route path="/round" component={Round} />
       <Route path="/leaderboard" component={Leaderboard} />
+      <Route path="/addvideo" component={AddVideo} />
     </div>
   </Router>
 );
