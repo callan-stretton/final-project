@@ -13,8 +13,9 @@ const AddVideo = props => {
       <h2 className="title subtitle is-2"><strong>Add a Scene Yourself!</strong></h2>
       <br />
       <p className="subtitle">
-        Find a clip on <a href="https://www.youtube.com/"><img src='images/youtube.png' alt='YouTube' width='100'/></a> and paste it below.
+        Find a clip on <a href="https://www.youtube.com/" target="_blank"><img src='images/youtube.png' alt='YouTube' width='100'/></a> and paste it below.
       </p>
+      <input type='text' className='new-vid-form'/>
       <br />
       <Link to="/">
         <button className="button is-large is-danger">Back to Home</button>
