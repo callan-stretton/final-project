@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 import Header from './Header'
 
 const AddVideo = props => {
@@ -13,7 +13,7 @@ const AddVideo = props => {
       <h2 className="title subtitle is-2"><strong>Add a Scene Yourself!</strong></h2>
       <br />
       <p className="subtitle">
-        Paste your YouTube link here and tell us where to have the pauses.
+        Find a clip on <img src='images/youtube.png' alt='YouTube' width='100' /> and paste it below.
       </p>
       <br />
       <Link to="/">
