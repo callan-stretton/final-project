@@ -13,7 +13,7 @@ const AddVideo = props => {
       <h2 className="title subtitle is-2"><strong>Add a Scene Yourself!</strong></h2>
       <br />
       <p className="subtitle">
-        Find a clip on <img src='images/youtube.png' alt='YouTube' width='100' /> and paste it below.
+        Find a clip on <a href="https://www.youtube.com/"><img src='images/youtube.png' alt='YouTube' width='100'/></a> and paste it below.
       </p>
       <br />
       <Link to="/">
