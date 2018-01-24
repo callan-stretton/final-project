@@ -27,6 +27,7 @@ class Video extends React.Component {
     this.endVideo = this.endVideo.bind(this)
     this.hideCountdown = this.hideCountdown.bind(this)
     this.hideStart = this.hideStart.bind(this)
+    this.grabTimeStamp = this.grabTimeStamp.bind(this)
   }
 
   componentWillMount () {
@@ -92,6 +93,9 @@ class Video extends React.Component {
     this.state.video.playVideo()
     setTimeout(() => this.state.video.pauseVideo(), (this.state.quoteEnd - this.state.quoteStart) * 1000)
   }
+  grabTimeStamp () {
+    console.log(this.state.video.getCurrentTime())
+  }
 
   render () {
     const opts = {
@@ -119,6 +123,8 @@ class Video extends React.Component {
         <div className="disableClick">
           <YouTube videoId={this.state.vidurl} opts={opts} onReady={this.saveVideo} />
         </div>
+        <br/>
+        <button className="button is-large is-danger" onClick={this.grabTimeStamp}>Grab Time</button>
         <br/>
         {this.state.startVisible && <button className="button is-large is-danger" onClick={this.startClip}>Start</button>}
         {this.state.speakPromptIsVisible && <h2 className="subtitle is-4">Please speak clearly into the microphone</h2>}
