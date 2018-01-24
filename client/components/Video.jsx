@@ -5,7 +5,7 @@ import ReactCountdownClock from 'react-countdown-clock'
 import Dictaphone from './Dictaphone'
 
 class Video extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       playerCanSpeak: false,
@@ -29,7 +29,7 @@ class Video extends React.Component {
     this.hideStart = this.hideStart.bind(this)
   }
 
-  componentWillMount () {
+  componentWillMount() {
     const { randomVid } = this.props
     console.log('test: ', randomVid)
     this.setState({
@@ -46,35 +46,35 @@ class Video extends React.Component {
     })
   }
 
-  saveVideo (e) {
+  saveVideo(e) {
     this.setState({
       video: e.target
     })
   }
 
-  startClip () {
+  startClip() {
     this.hideStart()
-    const {video, quoteStart, startTime} = this.state
+    const { video, quoteStart, startTime } = this.state
     video.seekTo(startTime)
     video.playVideo()
     setTimeout(() => this.muteClip(), ((quoteStart - startTime) + 2) * 1000)
   }
-  hideStart () {
-    this.setState({startVisible: false})
+  hideStart() {
+    this.setState({ startVisible: false })
   }
 
-  hideCountdown () {
-    this.setState({countdownIsVisible: false, playerCanSpeak: true})
+  hideCountdown() {
+    this.setState({ countdownIsVisible: false, playerCanSpeak: true })
   }
-  hideSpeakPrompt () {
-    this.setState({speakPromptIsVisible: false})
+  hideSpeakPrompt() {
+    this.setState({ speakPromptIsVisible: false })
   }
-  muteClip () {
+  muteClip() {
     this.state.video.mute()
-    this.setState({ muteIsVisible: true})
+    this.setState({ muteIsVisible: true })
     setTimeout(() => this.pauseClip(), ((this.state.quoteEnd - this.state.quoteStart) + 1) * 1000)
   }
-  pauseClip () {
+  pauseClip() {
     this.state.video.pauseVideo()
     this.setState({ muteIsVisible: false })
     this.setState({ countdownIsVisible: true })
@@ -82,18 +82,18 @@ class Video extends React.Component {
     setTimeout(() => this.hideCountdown(), 5000)
 
   }
-  restartClip () {
+  restartClip() {
     this.state.video.seekTo(this.state.quoteStart)
     this.state.video.unMute()
     setTimeout(() => this.endVideo(), 500)
     this.hideSpeakPrompt()
   }
-  endVideo () {
+  endVideo() {
     this.state.video.playVideo()
     setTimeout(() => this.state.video.pauseVideo(), (this.state.quoteEnd - this.state.quoteStart) * 1000)
   }
 
-  render () {
+  render() {
     const opts = {
       width: '1024',
       height: '576',
@@ -119,10 +119,10 @@ class Video extends React.Component {
         <div className="disableClick">
           <YouTube videoId={this.state.vidurl} opts={opts} onReady={this.saveVideo} />
         </div>
-        <br/>
+        <br />
         {this.state.startVisible && <button className="button is-large is-danger" onClick={this.startClip}>Start</button>}
         {this.state.speakPromptIsVisible && <h2 className="subtitle is-4">Please speak clearly into the microphone</h2>}
-        <Dictaphone restartClip={this.restartClip} randomVid={this.props.randomVid} handleClick={this.props.handleClick} startVisible={this.state.startVisible} playerCanSpeak={this.state.playerCanSpeak}/>
+        <Dictaphone restartClip={this.restartClip} randomVid={this.props.randomVid} handleClick={this.props.handleClick} startVisible={this.state.startVisible} playerCanSpeak={this.state.playerCanSpeak} />
       </div>
     )
   }
