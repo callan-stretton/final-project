@@ -25,8 +25,8 @@ class VideoPreview extends React.Component {
 
   render () {
     const opts = {
-      width: '1024',
-      height: '576'
+      width: '640',
+      height: '360'
     }
     return (
       <div>

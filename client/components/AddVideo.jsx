@@ -11,6 +11,11 @@ class AddVideo extends React.Component {
     }
   }
 
+  changeYouTubeUrl (evt) {
+    this.setState({ vidurl: evt.target.value })
+    console.log(this.state)
+  }
+
   render () {
     return (
       <div>
@@ -25,7 +30,7 @@ class AddVideo extends React.Component {
             Find a clip on <a href="https://www.youtube.com/" target="_blank"><img src='images/youtube.png' alt='YouTube' width='100' /></a> and paste it below.
           </p>
           <VideoPreview vidurl={this.something} />
-          <input type='text' className='new-vid-form' />
+          <input type='text' onChange={this.changeYouTubeUrl.bind(this)} className='new-vid-form' />
           <br />
           <Link to="/">
             <button className="button is-large is-danger">Back to Home</button>
