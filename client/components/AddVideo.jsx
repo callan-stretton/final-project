@@ -13,11 +13,12 @@ class AddVideo extends React.Component {
   }
 
   changeYouTubeUrl (evt) {
-    if (evt.target.value.includes('youtu')) {
-      let reducedUrl = evt.target.value
+    let fullUrl = evt.target.value
+    if (fullUrl.includes('youtu')) {
+      let reducedUrl = fullUrl.slice(fullUrl.length - 11, fullUrl.length)
       this.setState({ vidurl: reducedUrl })
     } else {
-      this.setState({ vidurl: evt.target.value })
+      this.setState({ vidurl: fullUrl })
     }
     console.log(this.state.vidurl)
   }
