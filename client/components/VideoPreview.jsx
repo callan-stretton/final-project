@@ -10,6 +10,7 @@ class VideoPreview extends React.Component {
       vidurl: ''
     }
     this.grabTimeStamp = this.grabTimeStamp.bind(this)
+    this.myProps = this.myProps.bind(this)
   }
 
   componentWillMount () {
@@ -23,6 +24,10 @@ class VideoPreview extends React.Component {
     console.log(this.state.video.getCurrentTime())
   }
 
+  myProps () {
+    console.log('this.props.vidurl = ', this.props.vidurl)
+  }
+
   render () {
     const opts = {
       width: '640',
@@ -31,10 +36,11 @@ class VideoPreview extends React.Component {
     return (
       <div>
         <div className="disableClick">
-          <YouTube videoId={this.state.vidurl} opts={opts} />
+          <YouTube videoId={this.props.vidurl} opts={opts} />
         </div>
         <br />
         <button className="button is-large is-danger" onClick={this.grabTimeStamp}>Grab Time</button>
+        <button className="button is-large is-danger" onClick={this.myProps}>Props</button>
       </div>
     )
   }
