@@ -14,7 +14,11 @@ class AddVideo extends React.Component {
 
   changeYouTubeUrl (evt) {
     let fullUrl = evt.target.value
-    if (!fullUrl.includes('youtu')) {
+    if (fullUrl.includes('iframe')) {
+      let srcUrl = fullUrl.split(' ').splice(3, 1).toString()
+      let reducedUrl = srcUrl.slice(srcUrl.length - 12, srcUrl.length - 1)
+      this.setState({ vidurl: reducedUrl })
+    } else if (!fullUrl.includes('youtu')) {
       this.setState({ vidurl: fullUrl })
     } else if (!fullUrl.includes('?t=')) {
       let reducedUrl = fullUrl.slice(fullUrl.length - 11, fullUrl.length)
