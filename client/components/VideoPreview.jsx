@@ -1,13 +1,10 @@
 import React from 'react'
-import Header from './Header'
 import YouTube from 'react-youtube'
 
 class VideoPreview extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      video: null,
-      vidurl: ''
     }
     this.grabTimeStamp = this.grabTimeStamp.bind(this)
     this.myProps = this.myProps.bind(this)
@@ -31,7 +28,15 @@ class VideoPreview extends React.Component {
   render () {
     const opts = {
       width: '640',
-      height: '360'
+      height: '360',
+      playerVars: {
+        autoplay: 1,
+        rel: 0,
+        controls: 1,
+        showinfo: 0,
+        modestbranding: 0,
+        iv_load_policy: 3
+      }
     }
     return (
       <div>
