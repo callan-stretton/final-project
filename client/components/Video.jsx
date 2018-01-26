@@ -27,7 +27,6 @@ class Video extends React.Component {
     this.endVideo = this.endVideo.bind(this)
     this.hideCountdown = this.hideCountdown.bind(this)
     this.hideStart = this.hideStart.bind(this)
-    this.grabTimeStamp = this.grabTimeStamp.bind(this)
   }
 
   componentWillMount () {
@@ -55,24 +54,24 @@ class Video extends React.Component {
 
   startClip () {
     this.hideStart()
-    const {video, quoteStart, startTime} = this.state
+    const { video, quoteStart, startTime } = this.state
     video.seekTo(startTime)
     video.playVideo()
     setTimeout(() => this.muteClip(), ((quoteStart - startTime) + 2) * 1000)
   }
   hideStart () {
-    this.setState({startVisible: false})
+    this.setState({ startVisible: false })
   }
 
   hideCountdown () {
-    this.setState({countdownIsVisible: false, playerCanSpeak: true})
+    this.setState({ countdownIsVisible: false, playerCanSpeak: true })
   }
   hideSpeakPrompt () {
-    this.setState({speakPromptIsVisible: false})
+    this.setState({ speakPromptIsVisible: false })
   }
   muteClip () {
     this.state.video.mute()
-    this.setState({ muteIsVisible: true})
+    this.setState({ muteIsVisible: true })
     setTimeout(() => this.pauseClip(), ((this.state.quoteEnd - this.state.quoteStart) + 1) * 1000)
   }
   pauseClip () {
@@ -81,7 +80,6 @@ class Video extends React.Component {
     this.setState({ countdownIsVisible: true })
     setTimeout(() => this.setState({ speakPromptIsVisible: true }), 5000)
     setTimeout(() => this.hideCountdown(), 5000)
-
   }
   restartClip () {
     this.state.video.seekTo(this.state.quoteStart)
@@ -92,10 +90,6 @@ class Video extends React.Component {
   endVideo () {
     this.state.video.playVideo()
     setTimeout(() => this.state.video.pauseVideo(), (this.state.quoteEnd - this.state.quoteStart) * 1000)
-  }
-  grabTimeStamp () {
-    console.log(this.state.video.getCurrentTime())
-    console.log('this.state.video = ', this.state.video)
   }
 
   render () {
@@ -124,12 +118,10 @@ class Video extends React.Component {
         <div className="disableClick">
           <YouTube videoId={this.state.vidurl} opts={opts} onReady={this.saveVideo} />
         </div>
-        <br/>
-        <button className="button is-large is-danger" onClick={this.grabTimeStamp}>Grab Time</button>
-        <br/>
+        <br />
         {this.state.startVisible && <button className="button is-large is-danger" onClick={this.startClip}>Start</button>}
         {this.state.speakPromptIsVisible && <h2 className="subtitle is-4">Please speak clearly into the microphone</h2>}
-        <Dictaphone restartClip={this.restartClip} randomVid={this.props.randomVid} handleClick={this.props.handleClick} startVisible={this.state.startVisible} playerCanSpeak={this.state.playerCanSpeak}/>
+        <Dictaphone restartClip={this.restartClip} randomVid={this.props.randomVid} handleClick={this.props.handleClick} startVisible={this.state.startVisible} playerCanSpeak={this.state.playerCanSpeak} />
       </div>
     )
   }
