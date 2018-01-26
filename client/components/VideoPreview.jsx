@@ -26,7 +26,7 @@ class VideoPreview extends React.Component {
   }
 
   grabTimeStamp (event) {
-    console.log(this.state.video.getCurrentTime())
+    console.log(Math.floor(this.state.video.getCurrentTime()))
   }
 
   _onReady (event) {
