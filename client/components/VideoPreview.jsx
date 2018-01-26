@@ -6,9 +6,13 @@ class VideoPreview extends React.Component {
     super(props)
     this.state = {
       video: null,
-      currentTime: null
+      startTime: null,
+      quoteStart: null,
+      quoteEnd: null
     }
-    this.grabTimeStamp = this.grabTimeStamp.bind(this)
+    this.grabStartTime = this.grabStartTime.bind(this)
+    this.grabQuoteStart = this.grabQuoteStart.bind(this)
+    this.grabQuoteEnd = this.grabQuoteEnd.bind(this)
     this.myProps = this.myProps.bind(this)
     this._onReady = this._onReady.bind(this)
   }
@@ -19,10 +23,22 @@ class VideoPreview extends React.Component {
     })
   }
 
-  grabTimeStamp (event) {
+  grabStartTime (event) {
     console.log(Math.floor(this.state.video.getCurrentTime()))
     this.setState({
-      currentTime: Math.floor(this.state.video.getCurrentTime())
+      startTime: Math.floor(this.state.video.getCurrentTime())
+    })
+  }
+  grabQuoteStart (event) {
+    console.log(Math.floor(this.state.video.getCurrentTime()))
+    this.setState({
+      quoteStart: Math.floor(this.state.video.getCurrentTime())
+    })
+  }
+  grabQuoteEnd (event) {
+    console.log(Math.floor(this.state.video.getCurrentTime()))
+    this.setState({
+      quoteEnd: Math.floor(this.state.video.getCurrentTime())
     })
   }
 
@@ -55,8 +71,18 @@ class VideoPreview extends React.Component {
           <YouTube videoId={this.props.vidurl} opts={opts} onReady={this._onReady} />
         </div>
         <br />
-        <button className="button is-large is-danger" onClick={this.grabTimeStamp}>Grab Time</button>
-        <input type='text' value={this.state.currentTime} />
+        Movie <input type='text' />
+        <br />
+        Quote <input type='text' />
+        <br />
+        <button className="button is-large is-danger" onClick={this.grabStartTime}>Grab Start Time</button>
+        <input type='text' value={this.state.startTime} />
+        <br />
+        <button className="button is-large is-danger" onClick={this.grabQuoteStart}>Start of Quote</button>
+        <input type='text' value={this.state.quoteStart} />
+        <br />
+        <button className="button is-large is-danger" onClick={this.grabQuoteEnd}>End of Quote</button>
+        <input type='text' value={this.state.quoteEnd} />
       </div>
     )
   }

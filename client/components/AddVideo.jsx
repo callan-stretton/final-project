@@ -51,8 +51,9 @@ class AddVideo extends React.Component {
           <p className="subtitle">
             Find a clip on <a href="https://www.youtube.com/" target="_blank"><img src='images/youtube.png' alt='YouTube' width='100' /></a> and paste it below.
           </p>
-          <VideoPreview vidurl={this.state.vidurl} />
           <input type='text' onChange={this.changeYouTubeUrl} className='new-vid-form' />
+          <br />
+          <VideoPreview vidurl={this.state.vidurl} />
           <br />
           <Link to="/">
             <button className="button is-large is-danger">Back to Home</button>
