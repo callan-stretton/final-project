@@ -7,7 +7,8 @@ class AddVideo extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      vidurl: ''
+      vidurl: '',
+      video: null
     }
     this.changeYouTubeUrl = this.changeYouTubeUrl.bind(this)
   }
@@ -29,6 +30,12 @@ class AddVideo extends React.Component {
       this.setState({ vidurl: reducedUrl })
     }
     console.log(this.state.vidurl)
+  }
+
+  saveVideo (e) {
+    this.setState({
+      video: e.target
+    })
   }
 
   render () {

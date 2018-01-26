@@ -5,20 +5,36 @@ class VideoPreview extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
+      video: null
     }
     this.grabTimeStamp = this.grabTimeStamp.bind(this)
     this.myProps = this.myProps.bind(this)
+    this._onReady = this._onReady.bind(this)
   }
 
-  componentWillMount () {
+  // saveVideo (e) {
+  //   this.setState({
+  //     video: e.target
+  //   })
+  // }
+
+  componentWillMount (event) {
     console.log('test: ', this.props.vidurl)
     this.setState({
       vidurl: this.props.vidurl
     })
   }
 
-  grabTimeStamp () {
+  grabTimeStamp (event) {
     console.log(this.state.video.getCurrentTime())
+  }
+
+  _onReady (event) {
+    // access to player in all event handlers via event.target
+    this.setState({
+      video: event.target
+    })
+    console.log('getCurrentTime = ', event.target.getCurrentTime())
   }
 
   myProps () {
@@ -40,8 +56,8 @@ class VideoPreview extends React.Component {
     }
     return (
       <div>
-        <div className="disableClick">
-          <YouTube videoId={this.props.vidurl} opts={opts} />
+        <div className="player">
+          <YouTube videoId={this.props.vidurl} opts={opts} onReady={this._onReady} />
         </div>
         <br />
         <button className="button is-large is-danger" onClick={this.grabTimeStamp}>Grab Time</button>
