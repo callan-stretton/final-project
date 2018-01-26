@@ -5,7 +5,7 @@ import ReactCountdownClock from 'react-countdown-clock'
 import Dictaphone from './Dictaphone'
 
 class Video extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       playerCanSpeak: false,
@@ -29,7 +29,7 @@ class Video extends React.Component {
     this.hideStart = this.hideStart.bind(this)
   }
 
-  componentWillMount() {
+  componentWillMount () {
     const { randomVid } = this.props
     console.log('test: ', randomVid)
     this.setState({
@@ -46,54 +46,53 @@ class Video extends React.Component {
     })
   }
 
-  saveVideo(e) {
+  saveVideo (e) {
     this.setState({
       video: e.target
     })
   }
 
-  startClip() {
+  startClip () {
     this.hideStart()
     const { video, quoteStart, startTime } = this.state
     video.seekTo(startTime)
     video.playVideo()
     setTimeout(() => this.muteClip(), ((quoteStart - startTime) + 2) * 1000)
   }
-  hideStart() {
+  hideStart () {
     this.setState({ startVisible: false })
   }
 
-  hideCountdown() {
+  hideCountdown () {
     this.setState({ countdownIsVisible: false, playerCanSpeak: true })
   }
-  hideSpeakPrompt() {
+  hideSpeakPrompt () {
     this.setState({ speakPromptIsVisible: false })
   }
-  muteClip() {
+  muteClip () {
     this.state.video.mute()
     this.setState({ muteIsVisible: true })
     setTimeout(() => this.pauseClip(), ((this.state.quoteEnd - this.state.quoteStart) + 1) * 1000)
   }
-  pauseClip() {
+  pauseClip () {
     this.state.video.pauseVideo()
     this.setState({ muteIsVisible: false })
     this.setState({ countdownIsVisible: true })
     setTimeout(() => this.setState({ speakPromptIsVisible: true }), 5000)
     setTimeout(() => this.hideCountdown(), 5000)
-
   }
-  restartClip() {
+  restartClip () {
     this.state.video.seekTo(this.state.quoteStart)
     this.state.video.unMute()
     setTimeout(() => this.endVideo(), 500)
     this.hideSpeakPrompt()
   }
-  endVideo() {
+  endVideo () {
     this.state.video.playVideo()
     setTimeout(() => this.state.video.pauseVideo(), (this.state.quoteEnd - this.state.quoteStart) * 1000)
   }
 
-  render() {
+  render () {
     const opts = {
       width: '1024',
       height: '576',
