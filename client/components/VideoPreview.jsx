@@ -16,6 +16,7 @@ class VideoPreview extends React.Component {
     this.testStartTime = this.testStartTime.bind(this)
     this.testQuoteStart = this.testQuoteStart.bind(this)
     this.testQuoteEnd = this.testQuoteEnd.bind(this)
+    this.decreaseStartTime = this.decreaseStartTime.bind(this)
     this._onReady = this._onReady.bind(this)
   }
 
@@ -26,9 +27,17 @@ class VideoPreview extends React.Component {
   }
 
   grabStartTime () {
+    this.state.video.pauseVideo()
     this.setState({
       startTime: Math.floor(this.state.video.getCurrentTime())
     })
+  }
+  decreaseStartTime () {
+    this.setState({
+      startTime: this.state.startTime - 1
+    })
+    this.state.video.seekTo(this.state.startTime - 1)
+    this.state.video.pauseVideo()
   }
   testStartTime () {
     this.state.video.seekTo(this.state.startTime)
@@ -36,6 +45,7 @@ class VideoPreview extends React.Component {
     setTimeout(() => this.state.video.pauseVideo(), 3000)
   }
   grabQuoteStart () {
+    this.state.video.pauseVideo()
     this.setState({
       quoteStart: Math.floor(this.state.video.getCurrentTime())
     })
@@ -46,6 +56,7 @@ class VideoPreview extends React.Component {
     setTimeout(() => this.state.video.pauseVideo(), 3000)
   }
   grabQuoteEnd () {
+    this.state.video.pauseVideo()
     this.setState({
       quoteEnd: Math.floor(this.state.video.getCurrentTime())
     })
@@ -55,10 +66,6 @@ class VideoPreview extends React.Component {
     this.state.video.playVideo()
     setTimeout(() => this.state.video.pauseVideo(), 3000)
   }
-
-// when hitting grabStartTime it should play from there
-// when hitting grabQuoteStart it should play from there
-// when hitting grabQuoteEnd it should play from 3 seconds (or quoteStart if shorter) before then pause at correct time
 
   _onReady (event) {
     this.setState({
@@ -93,15 +100,17 @@ class VideoPreview extends React.Component {
         <br />
         Quote <input type='text' />
         <br />
-        <button onClick={this.grabStartTime}>Grab Start Time</button>
+        <button onClick={this.decreaseStartTime}>&#9669;&#9669;</button>
+        <button onClick={this.grabStartTime}>|| Grab Start Time</button>
+        <button onClick={this.grabStartTime}>&#9659;&#9659;</button>
         <input type='text' value={this.state.startTime} />
         <button onClick={this.testStartTime}>Test Start Point</button>
         <br />
-        <button onClick={this.grabQuoteStart}>Start of Quote</button>
+        <button onClick={this.grabQuoteStart}>|| Start of Quote</button>
         <input type='text' value={this.state.quoteStart} />
         <button onClick={this.testQuoteStart}>Test Start of Quote</button>
         <br />
-        <button onClick={this.grabQuoteEnd}>End of Quote</button>
+        <button onClick={this.grabQuoteEnd}>|| End of Quote</button>
         <input type='text' value={this.state.quoteEnd} />
         <button onClick={this.testQuoteEnd}>Test End of Quote</button>
       </div>
