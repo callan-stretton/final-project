@@ -14,33 +14,39 @@ class VideoPreview extends React.Component {
     this.grabQuoteStart = this.grabQuoteStart.bind(this)
     this.grabQuoteEnd = this.grabQuoteEnd.bind(this)
     this.testStartTime = this.testStartTime.bind(this)
+    this.testQuoteStart = this.testQuoteStart.bind(this)
     this._onReady = this._onReady.bind(this)
   }
 
-  componentWillMount (event) {
+  componentWillMount () {
     this.setState({
       vidurl: this.props.vidurl
     })
   }
 
-  grabStartTime (event) {
+  grabStartTime () {
     console.log(Math.floor(this.state.video.getCurrentTime()))
     this.setState({
       startTime: Math.floor(this.state.video.getCurrentTime())
     })
   }
-  testStartTime (event) {
+  testStartTime () {
     this.state.video.seekTo(this.state.startTime)
     this.state.video.playVideo()
     setTimeout(() => this.state.video.pauseVideo(), 3000)
   }
-  grabQuoteStart (event) {
+  grabQuoteStart () {
     console.log(Math.floor(this.state.video.getCurrentTime()))
     this.setState({
       quoteStart: Math.floor(this.state.video.getCurrentTime())
     })
   }
-  grabQuoteEnd (event) {
+  testQuoteStart () {
+    this.state.video.seekTo(this.state.quoteStart)
+    this.state.video.playVideo()
+    setTimeout(() => this.state.video.pauseVideo(), 3000)
+  }
+  grabQuoteEnd () {
     console.log(Math.floor(this.state.video.getCurrentTime()))
     this.setState({
       quoteEnd: Math.floor(this.state.video.getCurrentTime())
@@ -90,6 +96,7 @@ class VideoPreview extends React.Component {
         <br />
         <button onClick={this.grabQuoteStart}>Start of Quote</button>
         <input type='text' value={this.state.quoteStart} />
+        <button onClick={this.testQuoteStart}>Test Start of Quote</button>
         <br />
         <button onClick={this.grabQuoteEnd}>End of Quote</button>
         <input type='text' value={this.state.quoteEnd} />
