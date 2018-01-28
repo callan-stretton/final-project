@@ -6,9 +6,9 @@ class VideoPreview extends React.Component {
     super(props)
     this.state = {
       video: null,
-      startTime: null,
-      quoteStart: null,
-      quoteEnd: null
+      startTime: '',
+      quoteStart: '',
+      quoteEnd: ''
     }
     this.grabStartTime = this.grabStartTime.bind(this)
     this.grabQuoteStart = this.grabQuoteStart.bind(this)
@@ -32,6 +32,7 @@ class VideoPreview extends React.Component {
   testStartTime (event) {
     this.state.video.seekTo(this.state.startTime)
     this.state.video.playVideo()
+    setTimeout(() => this.state.video.pauseVideo(), 3000)
   }
   grabQuoteStart (event) {
     console.log(Math.floor(this.state.video.getCurrentTime()))
