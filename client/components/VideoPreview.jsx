@@ -13,7 +13,7 @@ class VideoPreview extends React.Component {
     this.grabStartTime = this.grabStartTime.bind(this)
     this.grabQuoteStart = this.grabQuoteStart.bind(this)
     this.grabQuoteEnd = this.grabQuoteEnd.bind(this)
-    this.myProps = this.myProps.bind(this)
+    this.testStartTime = this.testStartTime.bind(this)
     this._onReady = this._onReady.bind(this)
   }
 
@@ -29,6 +29,10 @@ class VideoPreview extends React.Component {
       startTime: Math.floor(this.state.video.getCurrentTime())
     })
   }
+  testStartTime (event) {
+    this.state.video.seekTo(this.state.startTime)
+    this.state.video.playVideo()
+  }
   grabQuoteStart (event) {
     console.log(Math.floor(this.state.video.getCurrentTime()))
     this.setState({
@@ -41,6 +45,10 @@ class VideoPreview extends React.Component {
       quoteEnd: Math.floor(this.state.video.getCurrentTime())
     })
   }
+
+// when hitting grabStartTime it should play from there
+// when hitting grabQuoteStart it should play from there
+// when hitting grabQuoteEnd it should play from 3 seconds (or quoteStart if shorter) before then pause at correct time
 
   _onReady (event) {
     this.setState({
@@ -75,13 +83,14 @@ class VideoPreview extends React.Component {
         <br />
         Quote <input type='text' />
         <br />
-        <button className="button is-large is-danger" onClick={this.grabStartTime}>Grab Start Time</button>
+        <button onClick={this.grabStartTime}>Grab Start Time</button>
         <input type='text' value={this.state.startTime} />
+        <button onClick={this.testStartTime}>Test Start Point</button>
         <br />
-        <button className="button is-large is-danger" onClick={this.grabQuoteStart}>Start of Quote</button>
+        <button onClick={this.grabQuoteStart}>Start of Quote</button>
         <input type='text' value={this.state.quoteStart} />
         <br />
-        <button className="button is-large is-danger" onClick={this.grabQuoteEnd}>End of Quote</button>
+        <button onClick={this.grabQuoteEnd}>End of Quote</button>
         <input type='text' value={this.state.quoteEnd} />
       </div>
     )
