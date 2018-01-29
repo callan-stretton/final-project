@@ -105,23 +105,31 @@ class VideoPreview extends React.Component {
     })
   }
   decreaseQuoteEnd () {
-    this.setState({
-      quoteEnd: this.state.quoteEnd - 1
-    })
-    this.state.video.seekTo(this.state.quoteEnd - 1)
-    this.state.video.pauseVideo()
+    if (this.state.quoteEnd) {
+      this.setState({
+        quoteEnd: this.state.quoteEnd - 1
+      })
+      this.state.video.seekTo(this.state.quoteEnd - 1)
+      this.state.video.pauseVideo()
+    } else {
+      this.grabQuoteEnd()
+    }
   }
   increaseQuoteEnd () {
-    this.setState({
-      quoteEnd: this.state.quoteEnd + 1
-    })
-    this.state.video.seekTo(this.state.quoteEnd + 1)
-    this.state.video.pauseVideo()
+    if (this.state.quoteEnd) {
+      this.setState({
+        quoteEnd: this.state.quoteEnd + 1
+      })
+      this.state.video.seekTo(this.state.quoteEnd + 1)
+      this.state.video.pauseVideo()
+    } else {
+      this.grabQuoteEnd()
+    }
   }
   testQuoteEnd () {
-    this.state.video.seekTo(this.state.quoteEnd - 3)
+    this.state.video.seekTo(this.state.quoteEnd - 2)
     this.state.video.playVideo()
-    setTimeout(() => this.state.video.pauseVideo(), 3000)
+    setTimeout(() => this.state.video.pauseVideo(), 2000)
   }
   testWholeClip () {
     this.state.video.seekTo(this.state.startTime)
