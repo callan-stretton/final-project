@@ -22,6 +22,7 @@ class VideoPreview extends React.Component {
     this.increaseQuoteStart = this.increaseQuoteStart.bind(this)
     this.decreaseQuoteEnd = this.decreaseQuoteEnd.bind(this)
     this.increaseQuoteEnd = this.increaseQuoteEnd.bind(this)
+    this.testWholeClip = this.testWholeClip.bind(this)
     this._onReady = this._onReady.bind(this)
   }
 
@@ -54,7 +55,7 @@ class VideoPreview extends React.Component {
   testStartTime () {
     this.state.video.seekTo(this.state.startTime)
     this.state.video.playVideo()
-    setTimeout(() => this.state.video.pauseVideo(), 3000)
+    // setTimeout(() => this.state.video.pauseVideo(), 3000)
   }
   grabQuoteStart () {
     this.state.video.pauseVideo()
@@ -79,7 +80,7 @@ class VideoPreview extends React.Component {
   testQuoteStart () {
     this.state.video.seekTo(this.state.quoteStart)
     this.state.video.playVideo()
-    setTimeout(() => this.state.video.pauseVideo(), 3000)
+    // setTimeout(() => this.state.video.pauseVideo(), 3000)
   }
   grabQuoteEnd () {
     this.state.video.pauseVideo()
@@ -157,6 +158,8 @@ class VideoPreview extends React.Component {
         <button onClick={this.increaseQuoteEnd}>&#9659;&#9659;</button>
         <input type='text' value={this.state.quoteEnd} />
         <button onClick={this.testQuoteEnd}>Test End of Quote</button>
+        <br />
+        <button onClick={this.testWholeClip}>Test Timing of entire clip</button>
       </div>
     )
   }
