@@ -32,6 +32,8 @@ class VideoPreview extends React.Component {
     })
   }
 
+// clear timeout
+
   grabStartTime () {
     this.state.video.pauseVideo()
     this.setState({
@@ -61,6 +63,7 @@ class VideoPreview extends React.Component {
     }
   }
   testStartTime () {
+    this.state.video.unMute()
     this.state.video.seekTo(this.state.startTime)
     this.state.video.playVideo()
     // setTimeout(() => this.state.video.pauseVideo(), 3000)
@@ -94,6 +97,7 @@ class VideoPreview extends React.Component {
     }
   }
   testQuoteStart () {
+    this.state.video.unMute()
     this.state.video.seekTo(this.state.quoteStart)
     this.state.video.playVideo()
     // setTimeout(() => this.state.video.pauseVideo(), 3000)
@@ -127,6 +131,7 @@ class VideoPreview extends React.Component {
     }
   }
   testQuoteEnd () {
+    this.state.video.unMute()
     this.state.video.seekTo(this.state.quoteEnd - 2)
     this.state.video.playVideo()
     setTimeout(() => this.state.video.pauseVideo(), 2000)
