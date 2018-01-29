@@ -39,18 +39,26 @@ class VideoPreview extends React.Component {
     })
   }
   decreaseStartTime () {
-    this.setState({
-      startTime: this.state.startTime - 1
-    })
-    this.state.video.seekTo(this.state.startTime - 1)
-    this.state.video.pauseVideo()
+    if (this.state.startTime) {
+      this.setState({
+        startTime: this.state.startTime - 1
+      })
+      this.state.video.seekTo(this.state.startTime - 1)
+      this.state.video.pauseVideo()
+    } else {
+      this.grabStartTime()
+    }
   }
   increaseStartTime () {
-    this.setState({
-      startTime: this.state.startTime + 1
-    })
-    this.state.video.seekTo(this.state.startTime + 1)
-    this.state.video.pauseVideo()
+    if (this.state.startTime) {
+      this.setState({
+        startTime: this.state.startTime + 1
+      })
+      this.state.video.seekTo(this.state.startTime + 1)
+      this.state.video.pauseVideo()
+    } else {
+      this.grabStartTime()
+    }
   }
   testStartTime () {
     this.state.video.seekTo(this.state.startTime)
