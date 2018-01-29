@@ -107,6 +107,13 @@ class VideoPreview extends React.Component {
     this.state.video.playVideo()
     setTimeout(() => this.state.video.pauseVideo(), 3000)
   }
+  testWholeClip () {
+    this.state.video.seekTo(this.state.startTime)
+    this.state.video.playVideo()
+    setTimeout(() => this.state.video.mute(), (this.state.quoteStart - this.state.startTime) * 1000)
+    setTimeout(() => this.state.video.unMute(), (this.state.quoteEnd - this.state.startTime) * 1000)
+    setTimeout(() => this.state.video.pauseVideo(), ((this.state.quoteEnd - this.state.startTime) * 1000) + 3000)
+  }
 
   _onReady (event) {
     this.setState({
