@@ -23,6 +23,7 @@ class VideoPreview extends React.Component {
     this.decreaseQuoteEnd = this.decreaseQuoteEnd.bind(this)
     this.increaseQuoteEnd = this.increaseQuoteEnd.bind(this)
     this.testWholeClip = this.testWholeClip.bind(this)
+    this.increase = this.increase.bind(this)
     this._onReady = this._onReady.bind(this)
   }
 
@@ -59,6 +60,20 @@ class VideoPreview extends React.Component {
       this.state.video.seekTo(this.state.startTime + 1)
       this.state.video.pauseVideo()
     } else {
+      this.grabStartTime()
+    }
+  }
+  increase (timeType) {
+    if (this.state[timeType]) {
+      this.setState({
+        [timeType]: this.state[timeType] + 1
+      })
+      this.state.video.seekTo(this.state[timeType] + 1)
+      this.state.video.pauseVideo()
+      console.log('timeType = ', timeType)
+      console.log('this.state.startTime = ', this.state.startTime)
+    } else {
+      console.log('not looking at it')
       this.grabStartTime()
     }
   }
@@ -179,7 +194,7 @@ class VideoPreview extends React.Component {
         <br />
         <button onClick={this.decreaseStartTime}>&#9669;&#9669;</button>
         <button onClick={this.grabStartTime}>|| Grab Start Time</button>
-        <button onClick={this.increaseStartTime}>&#9659;&#9659;</button>
+        <button onClick = {() => this.increase('startTime')}>&#9659;&#9659;</button>
         <input type='text' value={this.state.startTime} />
         <button onClick={this.testStartTime}>Test Start Point</button>
         <br />
