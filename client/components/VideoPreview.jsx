@@ -16,13 +16,8 @@ class VideoPreview extends React.Component {
     this.testStartTime = this.testStartTime.bind(this)
     this.testQuoteStart = this.testQuoteStart.bind(this)
     this.testQuoteEnd = this.testQuoteEnd.bind(this)
-    this.decreaseStartTime = this.decreaseStartTime.bind(this)
-    this.increaseStartTime = this.increaseStartTime.bind(this)
-    this.decreaseQuoteStart = this.decreaseQuoteStart.bind(this)
-    this.increaseQuoteStart = this.increaseQuoteStart.bind(this)
-    this.decreaseQuoteEnd = this.decreaseQuoteEnd.bind(this)
-    this.increaseQuoteEnd = this.increaseQuoteEnd.bind(this)
     this.testWholeClip = this.testWholeClip.bind(this)
+    this.decrease = this.decrease.bind(this)
     this.increase = this.increase.bind(this)
     this._onReady = this._onReady.bind(this)
   }
@@ -41,23 +36,12 @@ class VideoPreview extends React.Component {
       startTime: Math.floor(this.state.video.getCurrentTime())
     })
   }
-  decreaseStartTime () {
-    if (this.state.startTime) {
+  decrease (timeType) {
+    if (this.state[timeType]) {
       this.setState({
-        startTime: this.state.startTime - 1
+        [timeType]: this.state[timeType] - 1
       })
-      this.state.video.seekTo(this.state.startTime - 1)
-      this.state.video.pauseVideo()
-    } else {
-      this.grabStartTime()
-    }
-  }
-  increaseStartTime () {
-    if (this.state.startTime) {
-      this.setState({
-        startTime: this.state.startTime + 1
-      })
-      this.state.video.seekTo(this.state.startTime + 1)
+      this.state.video.seekTo(this.state[timeType] - 1)
       this.state.video.pauseVideo()
     } else {
       this.grabStartTime()
@@ -86,28 +70,6 @@ class VideoPreview extends React.Component {
       quoteStart: Math.floor(this.state.video.getCurrentTime())
     })
   }
-  decreaseQuoteStart () {
-    if (this.state.quoteStart) {
-      this.setState({
-        quoteStart: this.state.quoteStart - 1
-      })
-      this.state.video.seekTo(this.state.quoteStart - 1)
-      this.state.video.pauseVideo()
-    } else {
-      this.grabQuoteStart()
-    }
-  }
-  increaseQuoteStart () {
-    if (this.state.quoteStart) {
-      this.setState({
-        quoteStart: this.state.quoteStart + 1
-      })
-      this.state.video.seekTo(this.state.quoteStart + 1)
-      this.state.video.pauseVideo()
-    } else {
-      this.grabQuoteStart()
-    }
-  }
   testQuoteStart () {
     this.state.video.unMute()
     this.state.video.seekTo(this.state.quoteStart)
@@ -119,28 +81,6 @@ class VideoPreview extends React.Component {
     this.setState({
       quoteEnd: Math.floor(this.state.video.getCurrentTime())
     })
-  }
-  decreaseQuoteEnd () {
-    if (this.state.quoteEnd) {
-      this.setState({
-        quoteEnd: this.state.quoteEnd - 1
-      })
-      this.state.video.seekTo(this.state.quoteEnd - 1)
-      this.state.video.pauseVideo()
-    } else {
-      this.grabQuoteEnd()
-    }
-  }
-  increaseQuoteEnd () {
-    if (this.state.quoteEnd) {
-      this.setState({
-        quoteEnd: this.state.quoteEnd + 1
-      })
-      this.state.video.seekTo(this.state.quoteEnd + 1)
-      this.state.video.pauseVideo()
-    } else {
-      this.grabQuoteEnd()
-    }
   }
   testQuoteEnd () {
     this.state.video.unMute()
