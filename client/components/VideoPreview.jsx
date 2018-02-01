@@ -70,10 +70,7 @@ class VideoPreview extends React.Component {
       })
       this.state.video.seekTo(this.state[timeType] + 1)
       this.state.video.pauseVideo()
-      console.log('timeType = ', timeType)
-      console.log('this.state.startTime = ', this.state.startTime)
     } else {
-      console.log('not looking at it')
       this.grabStartTime()
     }
   }
