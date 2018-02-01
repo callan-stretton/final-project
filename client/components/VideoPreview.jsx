@@ -60,13 +60,11 @@ class VideoPreview extends React.Component {
     this.state.video.unMute()
     this.state.video.seekTo(this.state.startTime)
     this.state.video.playVideo()
-    // setTimeout(() => this.state.video.pauseVideo(), 3000)
   }
   testQuoteStart () {
     this.state.video.unMute()
     this.state.video.seekTo(this.state.quoteStart)
     this.state.video.playVideo()
-    // setTimeout(() => this.state.video.pauseVideo(), 3000)
   }
   testQuoteEnd () {
     this.state.video.unMute()
