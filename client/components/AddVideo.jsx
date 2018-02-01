@@ -13,9 +13,6 @@ class AddVideo extends React.Component {
     this.changeYouTubeUrl = this.changeYouTubeUrl.bind(this)
   }
 
-// &index=1&list=PLG7EAC2ibgY6oGfG0MGWUjWnDXImOmvlJ
-// https://youtu.be/UuPb1J_RCJM?list=PLG7EAC2ibgY6oGfG0MGWUjWnDXImOmvlJ&t=33
-
   changeYouTubeUrl (evt) {
     let fullUrl = evt.target.value
     if (fullUrl.includes('iframe')) {
@@ -26,6 +23,10 @@ class AddVideo extends React.Component {
       this.setState({ vidurl: fullUrl })
     } else if (fullUrl.includes('&index')) {
       let untimedUrl = fullUrl.split('&index').splice(0, 1).toString()
+      let reducedUrl = untimedUrl.slice(untimedUrl.length - 11, untimedUrl.length)
+      this.setState({ vidurl: reducedUrl })
+    } else if (fullUrl.includes('?list')) {
+      let untimedUrl = fullUrl.split('?list').splice(0, 1).toString()
       let reducedUrl = untimedUrl.slice(untimedUrl.length - 11, untimedUrl.length)
       this.setState({ vidurl: reducedUrl })
     } else if (fullUrl.includes('&feature')) {
