@@ -129,21 +129,21 @@ class VideoPreview extends React.Component {
         <br />
         Quote <input type='text' />
         <br />
-        <button onClick={this.decreaseStartTime}>&#9669;&#9669;</button>
+        <button onClick={() => this.decrease('startTime')}>&#9669;&#9669;</button>
         <button onClick={this.grabStartTime}>|| Grab Start Time</button>
         <button onClick = {() => this.increase('startTime')}>&#9659;&#9659;</button>
         <input type='text' value={this.state.startTime} />
         <button onClick={this.testStartTime}>Test Start Point</button>
         <br />
-        <button onClick={this.decreaseQuoteStart}>&#9669;&#9669;</button>
+        <button onClick={() => this.decrease('quoteStart')}>&#9669;&#9669;</button>
         <button onClick={this.grabQuoteStart}>|| Start of Quote</button>
-        <button onClick={this.increaseQuoteStart}>&#9659;&#9659;</button>
+        <button onClick={() => this.increase('quoteStart')}>&#9659;&#9659;</button>
         <input type='text' value={this.state.quoteStart} />
         <button onClick={this.testQuoteStart}>Test Start of Quote</button>
         <br />
-        <button onClick={this.decreaseQuoteEnd}>&#9669;&#9669;</button>
+        <button onClick={() => this.decrease('quoteEnd')}>&#9669;&#9669;</button>
         <button onClick={this.grabQuoteEnd}>|| End of Quote</button>
-        <button onClick={this.increaseQuoteEnd}>&#9659;&#9659;</button>
+        <button onClick={() => this.increase('quoteEnd')}>&#9659;&#9659;</button>
         <input type='text' value={this.state.quoteEnd} />
         <button onClick={this.testQuoteEnd}>Test End of Quote</button>
         <br />
