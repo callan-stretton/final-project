@@ -21,6 +21,18 @@ class AddVideo extends React.Component {
       this.setState({ vidurl: reducedUrl })
     } else if (!fullUrl.includes('youtu')) {
       this.setState({ vidurl: fullUrl })
+    } else if (fullUrl.includes('&index')) {
+      let untimedUrl = fullUrl.split('&index').splice(0, 1).toString()
+      let reducedUrl = untimedUrl.slice(untimedUrl.length - 11, untimedUrl.length)
+      this.setState({ vidurl: reducedUrl })
+    } else if (fullUrl.includes('?list')) {
+      let untimedUrl = fullUrl.split('?list').splice(0, 1).toString()
+      let reducedUrl = untimedUrl.slice(untimedUrl.length - 11, untimedUrl.length)
+      this.setState({ vidurl: reducedUrl })
+    } else if (fullUrl.includes('&feature')) {
+      let untimedUrl = fullUrl.split('&feature').splice(0, 1).toString()
+      let reducedUrl = untimedUrl.slice(untimedUrl.length - 11, untimedUrl.length)
+      this.setState({ vidurl: reducedUrl })
     } else if (!fullUrl.includes('?t=')) {
       let reducedUrl = fullUrl.slice(fullUrl.length - 11, fullUrl.length)
       this.setState({ vidurl: reducedUrl })
