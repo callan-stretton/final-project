@@ -86,10 +86,6 @@ class VideoPreview extends React.Component {
     })
   }
 
-  myProps () {
-    console.log('this.props.vidurl = ', this.props.vidurl)
-  }
-
   render () {
     const opts = {
       width: '640',
