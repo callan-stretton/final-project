@@ -114,7 +114,7 @@ class VideoPreview extends React.Component {
         Quote <input type='text' />
         <br />
         <button onClick={() => this.decrease('startTime')}>&#9669;&#9669;</button>
-        <button onClick={() => this.grab('quoteStart')}>|| Grab Start Time</button>
+        <button onClick={() => this.grab('startTime')}>|| Grab Start Time</button>
         <button onClick = {() => this.increase('startTime')}>&#9659;&#9659;</button>
         <input type='text' value={this.state.startTime} />
         <button onClick={this.testStartTime}>Test Start Point</button>
