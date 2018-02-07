@@ -72,7 +72,7 @@ class Video extends React.Component {
   muteClip () {
     this.state.video.mute()
     this.setState({ muteIsVisible: true })
-    setTimeout(() => this.pauseClip(), ((this.state.quoteEnd - this.state.quoteStart) + 1) * 1000)
+    setTimeout(() => this.pauseClip(), (this.state.quoteEnd - this.state.quoteStart) * 1000)
   }
   pauseClip () {
     this.state.video.pauseVideo()
