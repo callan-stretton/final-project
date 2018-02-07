@@ -53,8 +53,6 @@ class Video extends React.Component {
   }
 
   startClip () {
-    console.log('this.state.quoteStart = ', this.state.quoteStart)
-    console.log('this.state.startTime = ', this.state.startTime)
     this.hideStart()
     const { video, quoteStart, startTime } = this.state
     video.seekTo(startTime)
@@ -72,7 +70,6 @@ class Video extends React.Component {
     this.setState({ speakPromptIsVisible: false })
   }
   muteClip () {
-    console.log('muting now')
     this.state.video.mute()
     this.setState({ muteIsVisible: true })
     setTimeout(() => this.pauseClip(), (this.state.quoteEnd - this.state.quoteStart) * 1000)
