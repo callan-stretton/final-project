@@ -59,7 +59,7 @@ class Video extends React.Component {
     const { video, quoteStart, startTime } = this.state
     video.seekTo(startTime)
     video.playVideo()
-    setTimeout(() => this.muteClip(), ((quoteStart - startTime) + 1) * 1000)
+    setTimeout(() => this.muteClip(), ((quoteStart - startTime) + 2) * 1000)
   }
   hideStart () {
     this.setState({ startVisible: false })
