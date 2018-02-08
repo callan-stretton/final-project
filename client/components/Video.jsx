@@ -78,8 +78,8 @@ class Video extends React.Component {
     this.state.video.pauseVideo()
     this.setState({ muteIsVisible: false })
     this.setState({ countdownIsVisible: true })
-    setTimeout(() => this.setState({ speakPromptIsVisible: true }), 5000)
-    setTimeout(() => this.hideCountdown(), 5000)
+    setTimeout(() => this.setState({ speakPromptIsVisible: true }), 3000)
+    setTimeout(() => this.hideCountdown(), 3000)
   }
   restartClip () {
     this.state.video.seekTo(this.state.quoteStart)
