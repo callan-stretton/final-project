@@ -113,7 +113,7 @@ class VideoPreview extends React.Component {
     return (
       <div>
         <div>
-          {this.state.muteIsVisible && <img src="images/mute.png" alt="Mute" className="mute" />}
+          {this.state.muteIsVisible && <img src="images/mute.png" alt="Mute" className="mutePreview" />}
         </div>
         <div className="player">
           <YouTube videoId={this.props.vidurl} opts={opts} onReady={this._onReady} />
