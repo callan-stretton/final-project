@@ -108,7 +108,7 @@ class Video extends React.Component {
       <div>
         <div className="countdown title has-text-centered">
           {this.state.countdownIsVisible && <ReactCountdownClock className="countdown-clock-comp"
-            seconds={5}
+            seconds={3}
             showMilliseconds={false}
             color="#631cf2"
             size={576}
