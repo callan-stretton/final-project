@@ -8,7 +8,8 @@ class VideoPreview extends React.Component {
       video: null,
       startTime: '',
       quoteStart: '',
-      quoteEnd: ''
+      quoteEnd: '',
+      muteIsVisible: false
     }
     this.grab = this.grab.bind(this)
     this.testStartTime = this.testStartTime.bind(this)
@@ -18,6 +19,8 @@ class VideoPreview extends React.Component {
     this.decrease = this.decrease.bind(this)
     this.increase = this.increase.bind(this)
     this._onReady = this._onReady.bind(this)
+    this.muteClip = this.muteClip.bind(this)
+    this.unMuteClip = this.unMuteClip.bind(this)
   }
 
   componentWillMount () {
@@ -72,11 +75,19 @@ class VideoPreview extends React.Component {
     this.state.video.playVideo()
     setTimeout(() => this.state.video.pauseVideo(), 2000)
   }
+  muteClip () {
+    this.state.video.mute()
+    this.setState({ muteIsVisible: true })
+  }
+  unMuteClip () {
+    this.state.video.unMute()
+    this.setState({ muteIsVisible: false })
+  }
   testWholeClip () {
     this.state.video.seekTo(this.state.startTime)
     this.state.video.playVideo()
-    setTimeout(() => this.state.video.mute(), (this.state.quoteStart - this.state.startTime) * 1000)
-    setTimeout(() => this.state.video.unMute(), (this.state.quoteEnd - this.state.startTime) * 1000)
+    setTimeout(() => this.muteClip(), (this.state.quoteStart - this.state.startTime) * 1000)
+    setTimeout(() => this.unMuteClip(), (this.state.quoteEnd - this.state.startTime) * 1000)
     setTimeout(() => this.state.video.pauseVideo(), ((this.state.quoteEnd - this.state.startTime) * 1000) + 3000)
   }
 
@@ -101,6 +112,9 @@ class VideoPreview extends React.Component {
     }
     return (
       <div>
+        <div>
+          {this.state.muteIsVisible && <img src="images/mute.png" alt="Mute" className="mute" />}
+        </div>
         <div className="player">
           <YouTube videoId={this.props.vidurl} opts={opts} onReady={this._onReady} />
         </div>
