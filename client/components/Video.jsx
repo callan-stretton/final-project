@@ -78,8 +78,8 @@ class Video extends React.Component {
     this.state.video.pauseVideo()
     this.setState({ muteIsVisible: false })
     this.setState({ countdownIsVisible: true })
-    setTimeout(() => this.setState({ speakPromptIsVisible: true }), 5000)
-    setTimeout(() => this.hideCountdown(), 5000)
+    setTimeout(() => this.setState({ speakPromptIsVisible: true }), 3000)
+    setTimeout(() => this.hideCountdown(), 3000)
   }
   restartClip () {
     this.state.video.seekTo(this.state.quoteStart)
@@ -108,7 +108,7 @@ class Video extends React.Component {
       <div>
         <div className="countdown title has-text-centered">
           {this.state.countdownIsVisible && <ReactCountdownClock className="countdown-clock-comp"
-            seconds={5}
+            seconds={3}
             showMilliseconds={false}
             color="#631cf2"
             size={576}
