@@ -12,9 +12,8 @@ class VideoPreview extends React.Component {
       muteIsVisible: false
     }
     this.grab = this.grab.bind(this)
-    this.testStartTime = this.testStartTime.bind(this)
-    this.testQuoteStart = this.testQuoteStart.bind(this)
-    this.testQuoteEnd = this.testQuoteEnd.bind(this)
+    this.testHowStarts = this.testHowStarts.bind(this)
+    this.testHowEnds = this.testHowEnds.bind(this)
     this.testWholeClip = this.testWholeClip.bind(this)
     this.decrease = this.decrease.bind(this)
     this.increase = this.increase.bind(this)
@@ -59,17 +58,13 @@ class VideoPreview extends React.Component {
       this.grab(timeType)
     }
   }
-  testStartTime () {
+
+  testHowStarts () {
     this.state.video.unMute()
     this.state.video.seekTo(this.state.startTime)
     this.state.video.playVideo()
   }
-  testQuoteStart () {
-    this.state.video.unMute()
-    this.state.video.seekTo(this.state.quoteStart)
-    this.state.video.playVideo()
-  }
-  testQuoteEnd () {
+  testHowEnds () {
     this.state.video.unMute()
     this.state.video.seekTo(this.state.quoteEnd - 2)
     this.state.video.playVideo()
@@ -127,19 +122,19 @@ class VideoPreview extends React.Component {
         <button onClick={() => this.grab('startTime')}>|| Grab Start Time</button>
         <button onClick = {() => this.increase('startTime')}>&#9659;&#9659;</button>
         <input type='text' value={this.state.startTime} />
-        <button onClick={this.testStartTime}>Test Start Point</button>
+        <button onClick={this.testHowStarts}>Test Start Point</button>
         <br />
         <button onClick={() => this.decrease('quoteStart')}>&#9669;&#9669;</button>
         <button onClick={() => this.grab('quoteStart')}>|| Start of Quote</button>
         <button onClick={() => this.increase('quoteStart')}>&#9659;&#9659;</button>
         <input type='text' value={this.state.quoteStart} />
-        <button onClick={this.testQuoteStart}>Test Start of Quote</button>
+        <button onClick={this.testHowStarts}>Test Start of Quote</button>
         <br />
         <button onClick={() => this.decrease('quoteEnd')}>&#9669;&#9669;</button>
         <button onClick={() => this.grab('quoteEnd')}>|| End of Quote</button>
         <button onClick={() => this.increase('quoteEnd')}>&#9659;&#9659;</button>
         <input type='text' value={this.state.quoteEnd} />
-        <button onClick={this.testQuoteEnd}>Test End of Quote</button>
+        <button onClick={this.testHowEnds}>Test End of Quote</button>
         <br />
         <button onClick={this.testWholeClip}>Test Timing of entire clip</button>
       </div>
