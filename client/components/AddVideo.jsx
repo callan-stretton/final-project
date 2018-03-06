@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Header from './Header'
 import VideoPreview from './VideoPreview'
-import { addVideo } from '../client-api'
 
 class AddVideo extends React.Component {
   constructor (props) {
