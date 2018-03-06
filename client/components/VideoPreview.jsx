@@ -26,6 +26,7 @@ class VideoPreview extends React.Component {
     this.muteClip = this.muteClip.bind(this)
     this.unMuteClip = this.unMuteClip.bind(this)
     this.changeMovieTitle = this.changeMovieTitle.bind(this)
+    this.changeQuote = this.changeQuote.bind(this)
     this.grabState = this.grabState.bind(this)
   }
 
@@ -106,6 +107,9 @@ class VideoPreview extends React.Component {
   changeMovieTitle (evt) {
     this.setState({ title: evt.target.value })
   }
+  changeQuote (evt) {
+    this.setState({ quote: evt.target.value })
+  }
 
   _onReady (event) {
     this.setState({
@@ -137,7 +141,7 @@ class VideoPreview extends React.Component {
         <br />
         Movie <input type='text' onChange={this.changeMovieTitle} />
         <br />
-            Quote <input type='text' />
+        Quote <input type='text' onChange={this.changeQuote} />
         <br />
         <button onClick={() => this.decrease('startTime')}>&#9669;&#9669;</button>
         <button onClick={() => this.grab('startTime')}>|| Grab Start Time</button>
