@@ -31,6 +31,7 @@ class VideoPreview extends React.Component {
   // clear timeout
 
   grab (timeType) {
+    console.log('grabbing time only')
     this.state.video.pauseVideo()
     this.setState({
       [timeType]: Math.floor(this.state.video.getCurrentTime())
@@ -54,6 +55,30 @@ class VideoPreview extends React.Component {
       })
       this.state.video.seekTo(this.state[timeType] + 1)
       this.state.video.pauseVideo()
+    } else {
+      this.grab(timeType)
+    }
+  }
+
+  increment (timeType, direction) {
+    console.log('increment function started')
+    if(direction === 'down') {
+      console.log('its down')
+    }
+    if (this.state[timeType]) {
+      if (direction === 'down') {
+        this.setState({
+          [timeType]: this.state[timeType] - 1
+        })
+        this.state.video.seekTo(this.state[timeType] - 1)
+        this.state.video.pauseVideo()
+      } else if (direction === 'up') {
+        this.setState({
+          [timeType]: this.state[timeType] + 1
+        })
+        this.state.video.seekTo(this.state[timeType] + 1)
+        this.state.video.pauseVideo()
+      }
     } else {
       this.grab(timeType)
     }
@@ -118,7 +143,8 @@ class VideoPreview extends React.Component {
         <br />
         Quote <input type='text' />
         <br />
-        <button onClick={() => this.decrease('startTime')}>&#9669;&#9669;</button>
+        {/* <button onClick={() => this.decrease('startTime')}>&#9669;&#9669;</button> */}
+        <input type='button' value='down' onClick={() => this.increment('startTime', value)}/>
         <button onClick={() => this.grab('startTime')}>|| Grab Start Time</button>
         <button onClick = {() => this.increase('startTime')}>&#9659;&#9659;</button>
         <input type='text' value={this.state.startTime} />
