@@ -7,32 +7,35 @@ class VideoPreview extends React.Component {
     super(props)
     this.state = {
       video: null,
+      vidurl: '',
       startTime: '',
       quoteStart: '',
       quoteEnd: '',
+      quote: '',
+      title: '',
       muteIsVisible: false
     }
     this.grab = this.grab.bind(this)
-    this.testHowStarts = this.testHowStarts.bind(this)
-    this.testHowEnds = this.testHowEnds.bind(this)
+    this.testStartTime = this.testStartTime.bind(this)
+    this.testQuoteStart = this.testQuoteStart.bind(this)
+    this.testQuoteEnd = this.testQuoteEnd.bind(this)
     this.testWholeClip = this.testWholeClip.bind(this)
     this.decrease = this.decrease.bind(this)
     this.increase = this.increase.bind(this)
     this._onReady = this._onReady.bind(this)
     this.muteClip = this.muteClip.bind(this)
     this.unMuteClip = this.unMuteClip.bind(this)
+    this.changeMovieTitle = this.changeMovieTitle.bind(this)
+    this.grabState = this.grabState.bind(this)
   }
 
-  componentWillMount () {
-    this.setState({
-      vidurl: this.props.vidurl
-    })
+  componentWillReceiveProps (props) {
+    if (props.vidurl != this.state.vidurl) this.setState({ vidurl: props.vidurl })
   }
 
   // clear timeout
 
   grab (timeType) {
-    console.log('grabbing time only')
     this.state.video.pauseVideo()
     this.setState({
       [timeType]: Math.floor(this.state.video.getCurrentTime())
@@ -60,12 +63,17 @@ class VideoPreview extends React.Component {
       this.grab(timeType)
     }
   }
-  testHowStarts () {
+  testStartTime () {
     this.state.video.unMute()
     this.state.video.seekTo(this.state.startTime)
     this.state.video.playVideo()
   }
-  testHowEnds () {
+  testQuoteStart () {
+    this.state.video.unMute()
+    this.state.video.seekTo(this.state.quoteStart)
+    this.state.video.playVideo()
+  }
+  testQuoteEnd () {
     this.state.video.unMute()
     this.state.video.seekTo(this.state.quoteEnd - 2)
     this.state.video.playVideo()
@@ -85,6 +93,18 @@ class VideoPreview extends React.Component {
     setTimeout(() => this.muteClip(), (this.state.quoteStart - this.state.startTime) * 1000)
     setTimeout(() => this.unMuteClip(), (this.state.quoteEnd - this.state.startTime) * 1000)
     setTimeout(() => this.state.video.pauseVideo(), ((this.state.quoteEnd - this.state.startTime) * 1000) + 3000)
+  }
+
+  grabState () {
+    var currentState = ''
+    for (var property in this.state) {
+      currentState += property + ': ' + this.state[property] + '; '
+    }
+    console.log('this.state = ' + currentState)
+  }
+
+  changeMovieTitle (evt) {
+    this.setState({ title: evt.target.value })
   }
 
   _onReady (event) {
@@ -114,34 +134,32 @@ class VideoPreview extends React.Component {
         <div className="player">
           <YouTube videoId={this.props.vidurl} opts={opts} onReady={this._onReady} />
         </div>
-        <form className='video-form' onSubmit={this.handleSubmit}>
-          <fieldset>
-            <br />
-        Movie <input type='text' />
-            <br />
-        Quote <input type='text' />
-            <br />
-            <button onClick={() => this.decrease('startTime')}>&#9669;&#9669;</button>
-            <button onClick={() => this.grab('startTime')}>|| Grab Start Time</button>
-            <button onClick = {() => this.increase('startTime')}>&#9659;&#9659;</button>
-            <input type='text' value={this.state.startTime} />
-            <button onClick={this.testHowStarts}>Test Start Point</button>
-            <br />
-            <button onClick={() => this.decrease('quoteStart')}>&#9669;&#9669;</button>
-            <button onClick={() => this.grab('quoteStart')}>|| Start of Quote</button>
-            <button onClick={() => this.increase('quoteStart')}>&#9659;&#9659;</button>
-            <input type='text' value={this.state.quoteStart} />
-            <button onClick={this.testHowStarts}>Test Start of Quote</button>
-            <br />
-            <button onClick={() => this.decrease('quoteEnd')}>&#9669;&#9669;</button>
-            <button onClick={() => this.grab('quoteEnd')}>|| End of Quote</button>
-            <button onClick={() => this.increase('quoteEnd')}>&#9659;&#9659;</button>
-            <input type='text' value={this.state.quoteEnd} />
-            <button onClick={this.testHowEnds}>Test End of Quote</button>
-            <br />
-            <button onClick={this.testWholeClip}>Test Timing of entire clip</button>
-          </fieldset>
-        </form>
+        <br />
+        Movie <input type='text' onChange={this.changeMovieTitle} />
+        <br />
+            Quote <input type='text' />
+        <br />
+        <button onClick={() => this.decrease('startTime')}>&#9669;&#9669;</button>
+        <button onClick={() => this.grab('startTime')}>|| Grab Start Time</button>
+        <button onClick={() => this.increase('startTime')}>&#9659;&#9659;</button>
+        <input type='text' value={this.state.startTime} />
+        <button onClick={this.testStartTime}>Test Start Point</button>
+        <br />
+        <button onClick={() => this.decrease('quoteStart')}>&#9669;&#9669;</button>
+        <button onClick={() => this.grab('quoteStart')}>|| Start of Quote</button>
+        <button onClick={() => this.increase('quoteStart')}>&#9659;&#9659;</button>
+        <input type='text' value={this.state.quoteStart} />
+        <button onClick={this.testQuoteStart}>Test Start of Quote</button>
+        <br />
+        <button onClick={() => this.decrease('quoteEnd')}>&#9669;&#9669;</button>
+        <button onClick={() => this.grab('quoteEnd')}>|| End of Quote</button>
+        <button onClick={() => this.increase('quoteEnd')}>&#9659;&#9659;</button>
+        <input type='text' value={this.state.quoteEnd} />
+        <button onClick={this.testQuoteEnd}>Test End of Quote</button>
+        <br />
+        <button onClick={this.testWholeClip}>Test Timing of entire clip</button>
+        <br />
+        <input type='button' value='Get Current State' onClick={this.grabState} />
       </div>
     )
   }
